@@ -12,6 +12,8 @@ const UserRouter = require("./src/routes/User.route")
 
 const app = express()
 
+const logger = require("./src/middlewares/logger") 
+
 const PORT = process.env.PORT
 
 const fs = require("fs")
@@ -19,6 +21,8 @@ const fs = require("fs")
 app.use(cors())
 
 app.use(express.json())
+
+app.use(logger)
 
 app.use('/api/v1/cities', CitiesRouter)
 app.use('/api/v1/adventures', AdventureRouter)
