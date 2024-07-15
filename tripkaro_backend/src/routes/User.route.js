@@ -21,6 +21,7 @@ const multerMiddleware = multer({
 
 const UserRouter = express.Router()
 
+
 UserRouter.put('/profile/picture', Authorization(['user', 'admin']), multerMiddleware.single('image'), UpdateProfilePictureController)
 
 module.exports = UserRouter
