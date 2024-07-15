@@ -5,11 +5,7 @@ const {createNewReservationService, GetReservationsByUserIdService} = require(".
 async function CreateNewAdventureBooking(req, res){
     try{
 
-        const userId = req.id;
-
-        const { id : adventureId } = req.query;
-
-        const {date , numberOfPerson} = req.body;
+        const { userId, adventureId, date, numberOfPerson } = req.body;
 
         if(!adventureId || !date || !numberOfPerson){
             throw new Error("adventureId, date or numberOfPerson is missing")
@@ -30,10 +26,12 @@ async function CreateNewAdventureBooking(req, res){
     }catch(err){
         console.log(err)
         res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-            success : false
+            success : false,
+            message : err.message
         })
     }
 }
+
 
 async function GetAllAdventuresBooking(req, res){
     try{
